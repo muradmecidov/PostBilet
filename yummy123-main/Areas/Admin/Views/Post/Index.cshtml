@@ -1,0 +1,50 @@
+﻿@model List<Post>
+@{
+    ViewData["Title"] = "Post";
+    int caunt = 1;
+}
+
+<div class="container" >
+    <div class="d-flex justify-content-end mb-2">
+        <a class="btn btn-success text-light" asp-area="Admin" asp-controller="Post" asp-action="Create">
+            Create Post<i class="bi bi-pencil-square"></i>
+        </a>
+    </div>
+    <div class="bg-secondary rounded h-100 p-4">
+        <h6 class="mb-4">Basic Table</h6>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Photo</th>
+                    <th scope="col">Settings</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <th>@caunt</th>
+                        <td>@item.Title</td>
+                        <td>@item.Description</td>
+                        <td><img src="~/assets/images/@item.ImagePath" height="150"/></td>
+                        <td>
+                            <a class="btn btn-warning text-light" asp-area="Admin" asp-controller="Post" asp-action="Update" asp-route-Id="@item.Id">
+                                     <i class="bi bi-arrow-counterclockwise"></i> 
+                            </a>
+                            <a class="btn btn-danger text-light" asp-area="Admin" asp-controller="Post" asp-action="Delete" asp-route-Id="@item.Id">
+                                  <i class="bi bi-trash-fill"></i>
+                            </a>
+                        </td>
+                    </tr>
+           caunt++;
+                    
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
